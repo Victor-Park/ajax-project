@@ -34,6 +34,20 @@
   border-radius: 15px;
 }
 
+.tab {
+  background-color: #cb202b;
+  color: black;
+  text-align: center;
+}
+
+.tab-active {
+  background-color: #38b45b;
+  color: white;
+  box-shadow: 0 0 10px black;
+  z-index: 2;
+  text-align: center;
+}
+
 .year-container::-webkit-scrollbar {
   display: none;
 }

@@ -11,7 +11,7 @@
 }
 
 .column-third {
-  width: calc(1 / 3);
+  width: calc(100% / 3);
 }
 
 .column-full {
