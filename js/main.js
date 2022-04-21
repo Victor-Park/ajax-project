@@ -1,6 +1,6 @@
 var ul = document.querySelector('ul');
 var $li = document.querySelectorAll('li');
-var menuButton = document.queryselector('.menu');
+var menuButton = document.querySelector('.menu');
 
 function getYearlyData(year) {
   var xhr = new XMLHttpRequest();
@@ -21,9 +21,7 @@ ul.addEventListener('click', function (event) {
   }
 });
 
-menuButton.addEventListener('click', togNav());
-
-function togNav() {
+menuButton.addEventListener('click', function () {
   var sidenavOn = document.querySelector('.sidenav-on');
   var sidenavOff = document.querySelector('.sidenav-off');
   var sidenavHeader = document.querySelector('.menu-header');
@@ -35,4 +33,4 @@ function togNav() {
     sidenavOff.className = 'sidenav-on center-text';
     sidenavHeader.textContent = 'Season';
   }
-}
+});
