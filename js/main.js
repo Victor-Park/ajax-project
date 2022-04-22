@@ -7,6 +7,7 @@ function getYearlyData(year) {
   xhr.open('GET', 'http://ergast.com/api/f1/' + year + '.json');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
+    document.querySelector('.season-header').textContent = xhr.response.MRData.RaceTable.season + ' Season';
   });
   xhr.send();
 }

@@ -37,7 +37,6 @@
 .tab {
   background-color: #cb202b;
   color: black;
-  text-align: center;
 }
 
 .tab-active {
@@ -45,6 +44,10 @@
   color: white;
   box-shadow: 0 0 10px black;
   z-index: 2;
+}
+
+.race-tab-header {
+  font-family: sans-serif;
   text-align: center;
 }
 
