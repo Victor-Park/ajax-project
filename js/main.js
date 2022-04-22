@@ -8,6 +8,26 @@ function getYearlyData(year) {
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     document.querySelector('.season-header').textContent = xhr.response.MRData.RaceTable.season + ' Season';
+    var raceDataArr = xhr.response.MRData.RaceTable.Races;
+    for (var i = 0; i < raceDataArr.length; i++) {
+      var tr = document.createElement('tr');
+      for (var j = 0; j < raceDataArr.length; j++) {
+        var tbody = document.querySelector('tbody');
+        var td = document.createElement('td');
+        var round = document.createTextNode(raceDataArr[i].round);
+        var raceName = document.createTextNode(raceDataArr[i].raceName);
+        var date = document.createTextNode(raceDataArr[i].date);
+        var time = document.createTextNode(raceDataArr[i].time);
+        var circuit = document.createTextNode(raceDataArr[i].circuitName);
+        td.appendChild(round);
+        td.appendChild(raceName);
+        td.appendChild(date);
+        td.appendChild(time);
+        td.appendChild(circuit);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+    }
   });
   xhr.send();
 }
