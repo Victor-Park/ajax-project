@@ -70,3 +70,18 @@ menuButton.addEventListener('click', function () {
     sidenavHeader.textContent = 'Season';
   }
 });
+
+var tabcontainer = document.querySelector('.tab-container');
+var tab = document.querySelectorAll('.tab');
+
+tabcontainer.addEventListener('click', function (event) {
+  if (event.target.matches('.tab')) {
+    for (var i = 0; i < tab.length; i++) {
+      if (tab[i] === event.target) {
+        tab[i].className = 'tab ' + 'active';
+      } else {
+        tab[i].className = 'tab';
+      }
+    }
+  }
+});
