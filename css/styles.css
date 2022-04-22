@@ -55,6 +55,35 @@
   display: none;
 }
 
+.table {
+  border: 1px solid #ddd;
+  padding: 8px;
+  margin: auto;
+  width: 90%;
+  border-collapse: collapse;
+}
+
+.table td {
+  padding: 5px 15px;
+  font-size: 22px;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.table tr:hover {
+  background-color: #ddd;
+}
+
+.table th {
+  text-align: left;
+  background-color: black;
+  color: white;
+  padding: 5px 15px;
+  font-size: 22px;
+}
+
 ul {
   list-style-type: none;
   padding-left: 0;

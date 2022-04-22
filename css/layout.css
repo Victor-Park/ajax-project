@@ -10,6 +10,10 @@
   height: 100vh;
 }
 
+.main-content {
+  width: 100%;
+}
+
 .column-third {
   width: calc(100% / 3);
 }
@@ -40,4 +44,9 @@
   margin: auto;
   overflow-y: auto;
   border-radius: 25px;
+}
+
+.season-header {
+  font-family: sans-serif;
+  margin-left: 5%;
 }
