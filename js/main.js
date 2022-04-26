@@ -39,42 +39,6 @@ function getYearlyData(year) {
   xhr.send();
 }
 
-function driverStandings(year) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/driverStandings.json');
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    document.querySelector('.season-header').textContent = xhr.response.MRData.StandingsTable.season + ' Season';
-    var driverDataArr = xhr.response.MRData.StandingsTable.StandingsLists[0].DriverStandings;
-    for (var j = 0; j < driverDataArr.length; j++) {
-      var tr = document.createElement('tr');
-      tr.setAttribute('class', 'trData');
-      var td1 = document.createElement('td');
-      var td2 = document.createElement('td');
-      var td3 = document.createElement('td');
-      var td4 = document.createElement('td');
-      var td5 = document.createElement('td');
-      var position = document.createTextNode(driverDataArr[j].position);
-      var driverName = document.createTextNode(driverDataArr[j].Driver.givenName + ' ' + driverDataArr[j].Driver.familyName);
-      var driverNumber = document.createTextNode(driverDataArr[j].Driver.permanentNumber);
-      var teamName = document.createTextNode(driverDataArr[j].Constructors[0].name);
-      var points = document.createTextNode(driverDataArr[j].points);
-      td1.appendChild(position);
-      td2.appendChild(driverName);
-      td3.appendChild(driverNumber);
-      td4.appendChild(teamName);
-      td5.appendChild(points);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      tr.appendChild(td5);
-      tbody.appendChild(tr);
-    }
-  });
-  xhr.send();
-}
-
 document.addEventListener('DOMContentLoaded', function (event) {
   getYearlyData('2022');
 });
@@ -89,12 +53,7 @@ ul.addEventListener('click', function (event) {
     for (var j = 0; j < trData.length; j++) {
       tbody.removeChild(trData[j]);
     }
-    var activeTab = document.querySelector('.active');
-    if (activeTab.textContent === 'Races') {
-      getYearlyData(event.target.textContent);
-    } else if (activeTab.textContent === 'Driver Standings') {
-      driverStandings(event.target.textContent);
-    }
+    getYearlyData(event.target.textContent);
   }
 });
 
@@ -109,21 +68,5 @@ menuButton.addEventListener('click', function () {
   } else {
     sidenavOff.className = 'sidenav-on center-text';
     sidenavHeader.textContent = 'Season';
-  }
-});
-
-var tabcontainer = document.querySelector('.tab-container');
-var tab = document.querySelectorAll('.tab');
-
-tabcontainer.addEventListener('click', function (event) {
-  if (event.target.matches('.tab')) {
-    for (var i = 0; i < tab.length; i++) {
-      if (tab[i] === event.target) {
-        tab[i].className = 'tab ' + 'active';
-
-      } else {
-        tab[i].className = 'tab';
-      }
-    }
   }
 });
