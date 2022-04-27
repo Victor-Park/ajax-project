@@ -40,66 +40,27 @@ function getYearlyData(year) {
       var round = document.createTextNode(raceDataArr[j].round);
       var raceName = document.createTextNode(raceDataArr[j].raceName);
       var date = document.createTextNode(raceDataArr[j].date);
-      var time = document.createTextNode(raceDataArr[j].time);
+      var utc = raceDataArr[j].time.replace(':00Z', ' UTC');
+      var time = document.createTextNode(utc);
       var circuit = document.createTextNode(raceDataArr[j].Circuit.circuitName);
+      var anchorGPName = document.createElement('a');
+      var anchorCircuit = document.createElement('a');
+      anchorGPName.setAttribute('href', raceDataArr[j].url);
+      anchorGPName.setAttribute('target', '_blank');
+      anchorCircuit.setAttribute('href', raceDataArr[j].Circuit.url);
+      anchorCircuit.setAttribute('target', '_blank');
       td1.appendChild(round);
-      td2.appendChild(raceName);
+      td2.appendChild(anchorGPName);
+      anchorGPName.appendChild(raceName);
       td3.appendChild(date);
       td4.appendChild(time);
-      td5.appendChild(circuit);
+      td5.appendChild(anchorCircuit);
+      anchorCircuit.appendChild(circuit);
       tr.appendChild(td1);
       tr.appendChild(td2);
       tr.appendChild(td3);
       tr.appendChild(td4);
       tr.appendChild(td5);
-      tbody.appendChild(tr);
-    }
-  });
-  xhr.send();
-}
-
-function constructorStandings(year) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/constructorStandings.json');
-  xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    document.querySelector('.season-header').textContent = xhr.response.MRData.StandingsTable.season + ' Season';
-    var constructorDataArr = xhr.response.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
-    var thead = document.querySelector('thead');
-    thead.textContent = '';
-    var trhead = document.createElement('tr');
-    var th1 = document.createElement('th');
-    var th2 = document.createElement('th');
-    var th3 = document.createElement('th');
-    var th4 = document.createElement('th');
-    th1.textContent = 'Position';
-    th2.textContent = 'Constructor';
-    th3.textContent = 'Total Points';
-    th4.textContent = 'Wins';
-    trhead.appendChild(th1);
-    trhead.appendChild(th2);
-    trhead.appendChild(th3);
-    trhead.appendChild(th4);
-    thead.appendChild(trhead);
-    for (var j = 0; j < constructorDataArr.length; j++) {
-      var tr = document.createElement('tr');
-      tr.setAttribute('class', 'trData');
-      var td1 = document.createElement('td');
-      var td2 = document.createElement('td');
-      var td3 = document.createElement('td');
-      var td4 = document.createElement('td');
-      var position = document.createTextNode(constructorDataArr[j].position);
-      var constructor = document.createTextNode(constructorDataArr[j].Constructor.name);
-      var points = document.createTextNode(constructorDataArr[j].points);
-      var wins = document.createTextNode(constructorDataArr[j].wins);
-      td1.appendChild(position);
-      td2.appendChild(constructor);
-      td3.appendChild(points);
-      td4.appendChild(wins);
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
       tbody.appendChild(tr);
     }
   });
@@ -145,8 +106,12 @@ function driverStandings(year) {
       var driverNumber = document.createTextNode(driverDataArr[j].Driver.permanentNumber);
       var teamName = document.createTextNode(driverDataArr[j].Constructors[0].name);
       var points = document.createTextNode(driverDataArr[j].points);
+      var anchorDriver = document.createElement('a');
+      anchorDriver.setAttribute('href', driverDataArr[j].Driver.url);
+      anchorDriver.setAttribute('target', '_blank');
       td1.appendChild(position);
-      td2.appendChild(driverName);
+      td2.appendChild(anchorDriver);
+      anchorDriver.appendChild(driverName);
       td3.appendChild(driverNumber);
       td4.appendChild(teamName);
       td5.appendChild(points);
@@ -155,6 +120,58 @@ function driverStandings(year) {
       tr.appendChild(td3);
       tr.appendChild(td4);
       tr.appendChild(td5);
+      tbody.appendChild(tr);
+    }
+  });
+  xhr.send();
+}
+
+function constructorStandings(year) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/constructorStandings.json');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    document.querySelector('.season-header').textContent = xhr.response.MRData.StandingsTable.season + ' Season';
+    var constructorDataArr = xhr.response.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+    var thead = document.querySelector('thead');
+    thead.textContent = '';
+    var trhead = document.createElement('tr');
+    var th1 = document.createElement('th');
+    var th2 = document.createElement('th');
+    var th3 = document.createElement('th');
+    var th4 = document.createElement('th');
+    th1.textContent = 'Position';
+    th2.textContent = 'Constructor';
+    th3.textContent = 'Total Points';
+    th4.textContent = 'Wins';
+    trhead.appendChild(th1);
+    trhead.appendChild(th2);
+    trhead.appendChild(th3);
+    trhead.appendChild(th4);
+    thead.appendChild(trhead);
+    for (var j = 0; j < constructorDataArr.length; j++) {
+      var tr = document.createElement('tr');
+      tr.setAttribute('class', 'trData');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      var td3 = document.createElement('td');
+      var td4 = document.createElement('td');
+      var position = document.createTextNode(constructorDataArr[j].position);
+      var constructor = document.createTextNode(constructorDataArr[j].Constructor.name);
+      var points = document.createTextNode(constructorDataArr[j].points);
+      var wins = document.createTextNode(constructorDataArr[j].wins);
+      var anchorConstructor = document.createElement('a');
+      anchorConstructor.setAttribute('href', constructorDataArr[j].Constructor.url);
+      anchorConstructor.setAttribute('target', '_blank');
+      td1.appendChild(position);
+      td2.appendChild(anchorConstructor);
+      anchorConstructor.appendChild(constructor);
+      td3.appendChild(points);
+      td4.appendChild(wins);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
       tbody.appendChild(tr);
     }
   });
