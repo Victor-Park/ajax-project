@@ -15,12 +15,13 @@
 }
 
 .page-header {
-  font-family: sans-serif;
+  font-family: "Racing Sans One", cursive;
+  font-size: 40px;
 }
 
 .menu {
   float: left;
-  margin-top: 20px;
+  margin-top: 35px;
   padding-right: 20px;
   padding-left: 20px;
   font-size: 30px;
@@ -29,7 +30,7 @@
 .year {
   margin: 15px 30px;
   padding: 5px 10px;
-  font-family: sans-serif;
+  font-family: Acme, sans-serif;
   font-size: x-large;
   border-radius: 15px;
 }
@@ -37,7 +38,6 @@
 .tab {
   background-color: #cb202b;
   color: black;
-  font-family: sans-serif;
   text-align: center;
   width: calc(100% / 3);
   font-size: 35px;
@@ -49,7 +49,6 @@
   color: white;
   box-shadow: 0 0 10px black;
   z-index: 2;
-  font-family: sans-serif;
   text-align: center;
   width: calc(100% / 3);
   font-size: 35px;
@@ -77,6 +76,7 @@
 .table td {
   padding: 5px 15px;
   font-size: 22px;
+  font-family: Kanit, sans-serif;
 }
 
 .table tr:nth-child(even) {
@@ -88,6 +88,7 @@
 }
 
 .table th {
+  font-family: Kanit, sans-serif;
   text-align: left;
   background-color: black;
   color: white;
