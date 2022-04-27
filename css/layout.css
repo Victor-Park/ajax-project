@@ -10,14 +10,18 @@
   height: 100vh;
 }
 
+.tab-container {
+  width: 100%;
+}
+
 .main-content {
   width: 100%;
 }
 
-.column-third {
+/* .column-third {
   width: calc(100% / 3);
 }
-
+ */
 .column-full {
   width: 100%;
 }
