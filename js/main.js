@@ -58,6 +58,54 @@ function getYearlyData(year) {
   xhr.send();
 }
 
+function constructorStandings(year) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/constructorStandings.json');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    document.querySelector('.season-header').textContent = xhr.response.MRData.StandingsTable.season + ' Season';
+    var constructorDataArr = xhr.response.MRData.StandingsTable.StandingsLists[0].ConstructorStandings;
+    var thead = document.querySelector('thead');
+    thead.textContent = '';
+    var trhead = document.createElement('tr');
+    var th1 = document.createElement('th');
+    var th2 = document.createElement('th');
+    var th3 = document.createElement('th');
+    var th4 = document.createElement('th');
+    th1.textContent = 'Position';
+    th2.textContent = 'Constructor';
+    th3.textContent = 'Total Points';
+    th4.textContent = 'Wins';
+    trhead.appendChild(th1);
+    trhead.appendChild(th2);
+    trhead.appendChild(th3);
+    trhead.appendChild(th4);
+    thead.appendChild(trhead);
+    for (var j = 0; j < constructorDataArr.length; j++) {
+      var tr = document.createElement('tr');
+      tr.setAttribute('class', 'trData');
+      var td1 = document.createElement('td');
+      var td2 = document.createElement('td');
+      var td3 = document.createElement('td');
+      var td4 = document.createElement('td');
+      var position = document.createTextNode(constructorDataArr[j].position);
+      var constructor = document.createTextNode(constructorDataArr[j].Constructor.name);
+      var points = document.createTextNode(constructorDataArr[j].points);
+      var wins = document.createTextNode(constructorDataArr[j].wins);
+      td1.appendChild(position);
+      td2.appendChild(constructor);
+      td3.appendChild(points);
+      td4.appendChild(wins);
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tbody.appendChild(tr);
+    }
+  });
+  xhr.send();
+}
+
 function driverStandings(year) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/driverStandings.json');
@@ -132,6 +180,8 @@ ul.addEventListener('click', function (event) {
       getYearlyData(event.target.textContent);
     } else if (activeTab.textContent === 'Driver Standings') {
       driverStandings(event.target.textContent);
+    } else if (activeTab.textContent === 'Constructor Standings') {
+      constructorStandings(event.target.textContent);
     }
   }
 });
@@ -164,6 +214,8 @@ tabcontainer.addEventListener('click', function (event) {
           driverStandings(year);
         } else if (tab[i].textContent === 'Races') {
           getYearlyData(year);
+        } else if (tab[i].textContent === 'Constructor Standings') {
+          constructorStandings(year);
         }
       } else {
         tab[i].className = 'tab';

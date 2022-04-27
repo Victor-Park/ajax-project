@@ -61,6 +61,11 @@
   text-align: center;
 }
 
+.data-table {
+  height: 90vh;
+  overflow-y: auto;
+}
+
 .table {
   border: 1px solid #ddd;
   padding: 8px;
