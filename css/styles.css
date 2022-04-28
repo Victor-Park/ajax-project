@@ -1,5 +1,7 @@
 .light-gray {
   background-color: lightgray;
+  transition-duration: 0.3s;
+  transition-property: transform;
 }
 
 .red {
@@ -25,6 +27,13 @@
   padding-right: 20px;
   padding-left: 20px;
   font-size: 30px;
+  transition: 0.3s;
+}
+
+.menu:hover {
+  cursor: pointer;
+  font-size: 35px;
+  margin-top: 30px;
 }
 
 .year {
@@ -42,6 +51,17 @@
   width: calc(100% / 3);
   font-size: 35px;
   padding: 15px;
+  display: inline-block;
+  vertical-align: middle;
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  transition-duration: 0.3s;
+  transition-property: box-shadow, transform;
+}
+
+.tab:hover {
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
 .tab.active {
@@ -104,4 +124,9 @@ ul {
 a {
   text-decoration: none;
   color: black;
+}
+
+li.light-gray:hover {
+  background-color: #ddd;
+  transform: scale(1.1);
 }
