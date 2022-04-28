@@ -40,7 +40,11 @@ function getYearlyData(year) {
       var round = document.createTextNode(raceDataArr[j].round);
       var raceName = document.createTextNode(raceDataArr[j].raceName);
       var date = document.createTextNode(raceDataArr[j].date);
-      var utc = raceDataArr[j].time.replace(':00Z', ' UTC');
+      if (raceDataArr[j].time) {
+        var utc = raceDataArr[j].time.replace(':00Z', ' UTC');
+      } else {
+        utc = '';
+      }
       var time = document.createTextNode(utc);
       var circuit = document.createTextNode(raceDataArr[j].Circuit.circuitName);
       var anchorGPName = document.createElement('a');
@@ -103,7 +107,11 @@ function driverStandings(year) {
       var td5 = document.createElement('td');
       var position = document.createTextNode(driverDataArr[j].position);
       var driverName = document.createTextNode(driverDataArr[j].Driver.givenName + ' ' + driverDataArr[j].Driver.familyName);
-      var driverNumber = document.createTextNode(driverDataArr[j].Driver.permanentNumber);
+      if (driverDataArr[j].Driver.permanentNumber) {
+        var driverNumber = document.createTextNode(driverDataArr[j].Driver.permanentNumber);
+      } else {
+        driverNumber = document.createTextNode('');
+      }
       var teamName = document.createTextNode(driverDataArr[j].Constructors[0].name);
       var points = document.createTextNode(driverDataArr[j].points);
       var anchorDriver = document.createElement('a');
