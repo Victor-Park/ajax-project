@@ -12,6 +12,7 @@
 
 .tab-container {
   width: 100%;
+  font-family: "Passion One", cursive;
 }
 
 .main-content {
@@ -47,6 +48,17 @@
 }
 
 .season-header {
-  font-family: sans-serif;
+  font-family: Arimo, sans-serif;
   margin-left: 5%;
+}
+
+@media (max-width: 850px) {
+  .sidenav-on {
+    min-width: 220px;
+    transition: 0.2s;
+  }
+
+  .sidenav-off {
+    transition: 0.1s;
+  }
 }
