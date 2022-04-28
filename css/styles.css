@@ -22,6 +22,8 @@
 }
 
 .menu {
+  background-color: #d3d3d3;
+  border-style: none;
   float: left;
   margin-top: 35px;
   padding-right: 20px;
