@@ -12,7 +12,8 @@
 
 .tab-container {
   width: 100%;
-  font-family: "Passion One", cursive;
+  font-family: Kanit, sans-serif;
+  font-weight: bold;
 }
 
 .main-content {
