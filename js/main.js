@@ -5,7 +5,7 @@ var tbody = document.querySelector('tbody');
 
 function getYearlyData(year) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '.json');
+  xhr.open('GET', 'https://ergast.com/api/f1/' + year + '.json');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     document.querySelector('.season-header').textContent = xhr.response.MRData.RaceTable.season + ' Season';
@@ -73,7 +73,7 @@ function getYearlyData(year) {
 
 function driverStandings(year) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/driverStandings.json');
+  xhr.open('GET', 'https://ergast.com/api/f1/' + year + '/driverStandings.json');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     document.querySelector('.season-header').textContent = xhr.response.MRData.StandingsTable.season + ' Season';
@@ -136,7 +136,7 @@ function driverStandings(year) {
 
 function constructorStandings(year) {
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'http://ergast.com/api/f1/' + year + '/constructorStandings.json');
+  xhr.open('GET', 'https://ergast.com/api/f1/' + year + '/constructorStandings.json');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     document.querySelector('.season-header').textContent = xhr.response.MRData.StandingsTable.season + ' Season';
