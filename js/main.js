@@ -2,6 +2,8 @@ var ul = document.querySelector('ul');
 var $li = document.querySelectorAll('li');
 var menuButton = document.querySelector('.menu');
 var tbody = document.querySelector('tbody');
+var tabcontainer = document.querySelector('.tab-container');
+var tab = document.querySelectorAll('.tab');
 
 function getYearlyData(year) {
   var xhr = new XMLHttpRequest();
@@ -224,9 +226,6 @@ menuButton.addEventListener('click', function () {
     sidenavHeader.textContent = 'Season';
   }
 });
-
-var tabcontainer = document.querySelector('.tab-container');
-var tab = document.querySelectorAll('.tab');
 
 tabcontainer.addEventListener('click', function (event) {
   if (event.target.matches('.tab')) {
